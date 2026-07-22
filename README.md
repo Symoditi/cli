@@ -4,7 +4,7 @@ Command-line interface for the [Symoditi](https://symoditi.com) brand reputation
 
 Symoditi tracks how your brand shows up across search engines, AI assistants, news and review
 sites. The CLI is the machine-readable way into all of it: every command can print JSON, every
-failure is a non-zero exit code, and authentication is a single environment variable. That makes
+failure is a non-zero exit code, and authentication is a pair of environment variables. That makes
 it a natural fit for an AI agent working on your behalf — and perfectly pleasant to drive by hand.
 
 > **Want an agent to set this up for you?** Copy [PROMPT.md](PROMPT.md) into Claude Code, Cursor,
@@ -34,7 +34,7 @@ Verify:
 
 ```sh
 symoditi --version
-# @symoditi/cli/0.1.1 darwin-arm64 node-v24.14.1
+# @symoditi/cli/0.1.1 darwin-arm64 node-v24.18.0
 ```
 
 ## Your first five minutes
@@ -89,7 +89,7 @@ symoditi brand-analytics get-workspaces -o json
     "role": "admin",
     "isActive": true,
     "brands": [
-      { "id": "019e1234-0000-7000-8000-0000000000bb", "name": "Acme", "slug": "acme" }
+      { "id": "019e1234-0000-7000-8000-0000000000bb", "name": "Acme", "slug": "Acme" }
     ]
   }
 ]
@@ -278,6 +278,10 @@ rm -rf "$HOME/Library/Application Support/symoditi" \
        "$HOME/.local/bin/symoditi" "$HOME/.local/bin/sym" \
        "$HOME/.symoditi"
 ```
+
+The installer puts the two symlinks in the first `PATH` directory it finds writable, so if it
+reported something other than `~/.local/bin` when you installed, adjust those two paths to match.
+`command -v symoditi` tells you where they actually live.
 
 ## Releases
 

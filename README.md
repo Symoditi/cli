@@ -43,7 +43,7 @@ one is available.
 You need a Symoditi API key (ask your Symoditi workspace administrator). Then:
 
 ```sh
-symoditi config login     # save the API key as a named profile
+symoditi config login     # save the API key as a named profile (stored in ~/.symoditi/)
 symoditi config doctor    # verify config, permissions and connectivity
 ```
 
@@ -63,7 +63,7 @@ Global flags on every command: `--profile` to switch between saved profiles, and
 ```sh
 rm -rf "$HOME/Library/Application Support/symoditi" \
        "$HOME/.local/bin/symoditi" "$HOME/.local/bin/sym" \
-       "$HOME/.config/symoditi"
+       "$HOME/.symoditi"
 ```
 
 ## Releases

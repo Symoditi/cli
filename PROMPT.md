@@ -1,3 +1,5 @@
+<!-- GENERATED MIRROR: this file is maintained in an internal source-of-truth repo and synced to Symoditi/cli on every CLI release. Do not edit it in Symoditi/cli — direct edits are overwritten by the next sync. -->
+
 # Set up the Symoditi CLI with an agent
 
 Copy the block below into Claude Code, Cursor, Codex, or any coding agent with shell access. It

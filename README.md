@@ -1,3 +1,5 @@
+<!-- GENERATED MIRROR: this file is maintained in an internal source-of-truth repo and synced to Symoditi/cli on every CLI release. Do not edit it in Symoditi/cli — direct edits are overwritten by the next sync. -->
+
 # Symoditi CLI
 
 Command-line interface for the [Symoditi](https://symoditi.com) brand reputation platform.

@@ -34,7 +34,7 @@ Verify:
 
 ```sh
 symoditi --version
-# @symoditi/cli/0.1.1 darwin-arm64 node-v24.18.0
+# @symoditi/cli/<version> darwin-arm64 node-v24.18.0
 ```
 
 ## Your first five minutes
@@ -44,8 +44,20 @@ brand. The outputs below are illustrative, but the shapes are exactly what the A
 
 ### 1. Authenticate
 
-Mint an API key in the Symoditi app under **Settings → API Keys**
-(<https://app.symoditi.com/settings/api-keys>), then save it as a named profile:
+On a machine with a browser, one command does everything — it opens the Symoditi login page,
+lets you pick scopes on the consent screen, then mints a scoped API key and saves it as a
+profile:
+
+```sh
+symoditi auth login
+```
+
+On a headless box, `symoditi auth login --no-open` prints the URL to open elsewhere instead of
+launching a browser.
+
+Alternatively — for agents, CI, or when you already have a key — mint one in the Symoditi app
+under **Settings → API Keys** (<https://app.symoditi.com/settings/api-keys>), then save it as a
+named profile:
 
 ```sh
 symoditi config login

@@ -20,7 +20,7 @@ you, and report honestly if something fails instead of working around it.
 
    symoditi --version
 
-   Expect output like "@symoditi/cli/0.1.1 darwin-arm64 node-v24.18.0". If the shell cannot find
+   Expect output like "@symoditi/cli/<version> darwin-arm64 node-v24.18.0". If the shell cannot find
    `symoditi`, the installer printed a PATH hint — add that directory to my shell profile, then
    re-check in a fresh shell.
 

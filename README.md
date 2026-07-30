@@ -120,7 +120,7 @@ Your account also carries a server-side **active context** — the workspace and
 opens on. Read it, and reuse it as your defaults:
 
 ```sh
-symoditi auth get-app-state -o json
+symoditi app-state get-app-state -o json
 ```
 
 ```json

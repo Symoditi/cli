@@ -48,11 +48,11 @@ you, and report honestly if something fails instead of working around it.
 
 6. Show me what the key can reach:
 
-   symoditi brand-analytics get-workspaces -o json
+   symoditi organizations get-organizations -o json
 
-   Summarize the workspaces and the brands nested under them as a short list, with their IDs.
+   Summarize the organizations and the brands nested under them as a short list, with their IDs.
 
-7. Report back: the installed version, the profile name, and the workspaces and brands I have
+7. Report back: the installed version, the profile name, and the organizations and brands I have
    access to. Never print my API key, not even partially.
 
 Useful things to know while you work:
@@ -66,10 +66,10 @@ Useful things to know while you work:
   the CLI without a saved profile.
 
 If I ask about my brand once setup is done, these two commands are the usual starting points
-(workspace and brand IDs come from step 6):
+(organization and brand IDs come from step 6):
 
-   symoditi brand-analytics get-overview <workspaceId> <brandId> --dateFrom <YYYY-MM-DD> --dateTo <YYYY-MM-DD> -o json
-   symoditi brand-analytics get-sentiment-drivers <workspaceId> <brandId> --view pool --limit 10 -o json
+   symoditi brand-analytics get-overview <orgId> <brandId> --dateFrom <YYYY-MM-DD> --dateTo <YYYY-MM-DD> -o json
+   symoditi brand-analytics get-sentiment-drivers <orgId> <brandId> --view pool --limit 10 -o json
 
 The first returns the day-by-day sentiment split for the brand. The second ranks the pages
 driving negative sentiment, with how much of the negative pool each one accounts for.

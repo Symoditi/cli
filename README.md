@@ -85,13 +85,13 @@ symoditi config doctor
 # Health check: OK
 ```
 
-### 2. Choose your workspace and brand
+### 2. Choose your organization and brand
 
-Symoditi data is scoped to a **workspace** (your organization) and a **brand** inside it. One
-command lists everything your key can reach, with brands nested under each workspace:
+Symoditi data is scoped to a **organization** (your organization) and a **brand** inside it. One
+command lists everything your key can reach, with brands nested under each organization:
 
 ```sh
-symoditi brand-analytics get-workspaces -o json
+symoditi organizations get-organizations -o json
 ```
 
 ```json
@@ -116,8 +116,9 @@ WS=019e1234-0000-7000-8000-0000000000aa
 BRAND=019e1234-0000-7000-8000-0000000000bb
 ```
 
-Your account also carries a server-side **active context** — the workspace and brand the web app
-opens on. Read it, and reuse it as your defaults:
+The **active context** (the organization and brand a client defaults to) is now a per-surface feature
+(DEV-1116). The CLI authenticates with an **API key**, which has **no active context** — so
+`get-app-state` returns all-null context fields and `update-app-state` is rejected with `400`:
 
 ```sh
 symoditi app-state get-app-state -o json
@@ -125,20 +126,19 @@ symoditi app-state get-app-state -o json
 
 ```json
 {
-  "activeWorkspaceId": "019e1234-0000-7000-8000-0000000000aa",
-  "activeWorkspaceSlug": "acme",
-  "activeBrandId": "019e1234-0000-7000-8000-0000000000bb",
-  "activeBrandSlug": "Acme",
+  "activeOrganizationId": null,
+  "activeOrganizationSlug": null,
+  "activeBrandId": null,
+  "activeBrandSlug": null,
   "appState": {}
 }
 ```
 
-Switching it also changes what the web app opens on:
-
-```sh
-symoditi app-state update-app-state \
-  --data "{\"activeWorkspaceId\":\"$WS\",\"activeBrandId\":\"$BRAND\"}"
-```
+Pass the brand (and organization) explicitly on each command instead of relying on a stored default.
+If you drive Symoditi through the **MCP** tools, use `set_active_context` to pick an active brand
+that later brand-scoped tools reuse — that context is shared across your MCP clients (Claude
+Desktop / Claude Code / Cursor) but is separate from the web app, whose context lives on its
+browser session.
 
 ### 3. Read the brand overview
 
@@ -255,7 +255,7 @@ The design goal is that an agent needs no special adapter — the CLI *is* the a
   ```sh
   export SYMODITI_API_KEY=symo_...
   export SYMODITI_API_URL=https://api.symoditi.com
-  symoditi brand-analytics get-workspaces
+  symoditi organizations get-organizations
   ```
 
   `SYMODITI_PROFILE` picks a saved profile by name instead. Prefer environment variables over the

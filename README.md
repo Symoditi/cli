@@ -135,10 +135,23 @@ symoditi app-state get-app-state -o json
 ```
 
 Pass the brand (and organization) explicitly on each command instead of relying on a stored default.
-If you drive Symoditi through the **MCP** tools, use `set_active_context` to pick an active brand
-that later brand-scoped tools reuse — that context is shared across your MCP clients (Claude
-Desktop / Claude Code / Cursor) but is separate from the web app, whose context lives on its
-browser session.
+If you drive Symoditi through the **MCP** tools, use `set_active_context` to pick an active
+**monitoring** (`list_monitorings` gives you the id) — that is the scope the analytics tools read
+through, and a brand next to it is only a filter. The same call can set an active brand for the
+brand-scoped tools. That context is shared across your MCP clients (Claude Desktop / Claude Code /
+Codex / Cursor) but is separate from the web app, whose context lives on its browser session.
+
+To connect Codex with OAuth, register the Streamable HTTP server and then complete login:
+
+```sh
+symoditi mcp install --client codex --auth oauth
+codex mcp login symoditi
+symoditi mcp status
+```
+
+Codex CLI, the Codex IDE extension, and the ChatGPT desktop app share Codex's
+`~/.codex/config.toml`. Install and uninstall change only the
+`[mcp_servers."symoditi"]` table and preserve every unrelated setting and server.
 
 ### 3. Read the brand overview
 

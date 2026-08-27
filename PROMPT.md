@@ -55,6 +55,15 @@ you, and report honestly if something fails instead of working around it.
 7. Report back: the installed version, the profile name, and the organizations and brands I have
    access to. Never print my API key, not even partially.
 
+8. If I am running Codex and ask for MCP access, register the OAuth server without printing or
+   copying credentials:
+
+   symoditi mcp install --client codex --auth oauth
+   codex mcp login symoditi
+
+   Let Codex open its authorization flow. Then run `symoditi mcp status`; never capture or paste
+   the authorization URL, OAuth code, refresh token, or credential-store contents into logs.
+
 Useful things to know while you work:
 
 - Output is a table on a terminal and JSON when piped, so `symoditi <command> | jq ...` works;

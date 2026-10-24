@@ -17,9 +17,9 @@ This repository hosts installation instructions and a versioned archive of CLI r
 source lives in a private monorepo; binaries are distributed as standalone tarballs with an
 embedded Node.js runtime — **no prerequisites on your machine**.
 
-## Install (macOS)
+## Install (macOS and Linux)
 
-Apple Silicon and Intel are both supported:
+macOS on Apple Silicon and Intel, and Linux x64 are supported:
 
 ```sh
 curl -fsSL https://cli.symoditi.com/install | sh
@@ -28,7 +28,8 @@ curl -fsSL https://cli.symoditi.com/install | sh
 The installer:
 
 - downloads the latest `stable` build from `cli.symoditi.com`;
-- unpacks it into `~/Library/Application Support/symoditi` (user-writable — no `sudo`, ever);
+- unpacks it into `~/Library/Application Support/symoditi` on macOS or
+  `${XDG_DATA_HOME:-~/.local/share}/symoditi` on Linux (user-writable — no `sudo`, ever);
 - symlinks two equivalent binaries, `symoditi` and the short alias `sym`, into a `PATH`
   directory (falls back to `~/.local/bin`; the installer prints a `PATH` hint if needed).
 
@@ -135,11 +136,9 @@ symoditi app-state get-app-state -o json
 ```
 
 Pass the brand (and organization) explicitly on each command instead of relying on a stored default.
-If you drive Symoditi through the **MCP** tools, use `set_active_context` to pick an active
-**monitoring** (`list_monitorings` gives you the id) — that is the scope the analytics tools read
-through, and a brand next to it is only a filter. The same call can set an active brand for the
-brand-scoped tools. That context is shared across your MCP clients (Claude Desktop / Claude Code /
-Codex / Cursor) but is separate from the web app, whose context lives on its browser session.
+For **MCP**, call `list_monitorings`, let the user select a monitoring, and pass its UUID as
+`monitoringId` on every monitoring-scoped call. Keep the choice only in the current conversation;
+the server stores no MCP active context. With several tenants, also pass `organizationSlug`.
 
 To connect Codex with OAuth, register the Streamable HTTP server and then complete login:
 
@@ -318,7 +317,7 @@ browsable archive with release notes.
 
 ## Supported platforms
 
-macOS 13+ on Apple Silicon (`arm64`) and Intel (`x64`). Linux builds are planned.
+macOS 13+ on Apple Silicon (`arm64`) and Intel (`x64`), and Linux x64 (glibc).
 
 ## License
 

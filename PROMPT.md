@@ -15,7 +15,7 @@ you, and report honestly if something fails instead of working around it.
 
    curl -fsSL https://cli.symoditi.com/install | sh
 
-   macOS only for now (Apple Silicon and Intel are both supported). It installs into a
+   macOS (Apple Silicon and Intel) and Linux x64 are supported. It installs into a
    user-writable directory — never run it with sudo.
 
 2. Verify the binary is reachable:

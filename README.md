@@ -323,3 +323,17 @@ macOS 13+ on Apple Silicon (`arm64`) and Intel (`x64`), and Linux x64 (glibc).
 
 Proprietary — © Symoditi. All rights reserved. The binaries are provided for use with the
 Symoditi platform. See [LICENSE](LICENSE).
+
+### HTTP request timeout
+
+All API commands accept `--timeout-ms`: a positive finite number of milliseconds no greater than 2147483647.
+The default is `30000` (30 seconds). Invalid values fail before any HTTP request.
+This controls each HTTP request, not the total command duration, and adds no retries
+(including for POST/PATCH). Automation can pass its remaining request budget, such
+as `--timeout-ms 20000`, when it explicitly retries a read. Keep API keys in the
+environment, never in command arguments:
+
+```sh
+# SYMODITI_API_KEY is supplied by the automation environment.
+symoditi monitorings list --no-includeStats --timeout-ms 90000 -o json --quiet --error-format json
+```
